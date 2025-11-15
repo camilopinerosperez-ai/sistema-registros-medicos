@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de registros médicos para gestión de pacientes">
+    <title>Sistema de Registros Médicos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏥 Sistema de Registros Médicos</h1>
+            <p class="subtitle">Gestión eficiente de información de pacientes</p>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <h2>Registrar Nuevo Paciente</h2>
+                <form id="patientForm">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo *</label>
+                        <input type="text" id="nombre" name="nombre" required 
+                               placeholder="Ej: Juan Pérez González">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cedula">Cédula *</label>
+                            <input type="text" id="cedula" name="cedula" required 
+                                   placeholder="Ej: 1234567890"
+                                   pattern="[0-9]{7,10}">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="fechaNacimiento">Fecha de Nacimiento *</label>
+                            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="tipoSangre">Tipo de Sangre *</label>
+                            <select id="tipoSangre" name="tipoSangre" required>
+                                <option value="">Seleccione...</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="alergias">Alergias</label>
+                            <input type="text" id="alergias" name="alergias" 
+                                   placeholder="Ej: Penicilina, Polen">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="observaciones">Observaciones</label>
+                        <textarea id="observaciones" name="observaciones" rows="3"
+                                  placeholder="Información adicional relevante..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            ➕ Registrar Paciente
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="limpiarFormulario()">
+                            🔄 Limpiar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section class="records-section">
+                <div class="section-header">
+                    <h2>Registros de Pacientes</h2>
+                    <div class="records-stats">
+                        <span id="totalPacientes">Total: 0 pacientes</span>
+                    </div>
+                </div>
+
+                <div id="noRecords" class="no-records">
+                    <p>📋 No hay pacientes registrados</p>
+                    <p class="hint">Comience agregando un nuevo paciente usando el formulario</p>
+                </div>
+
+                <div class="table-container" id="tableContainer" style="display: none;">
+                    <table id="patientsTable">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Cédula</th>
+                                <th>Fecha Nac.</th>
+                                <th>Edad</th>
+                                <th>Tipo Sangre</th>
+                                <th>Alergias</th>
+                                <th>Observaciones</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="patientsTableBody">
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="table-actions" id="tableActions" style="display: none;">
+                    <button type="button" class="btn btn-danger" onclick="confirmarBorrarTodo()">
+                        🗑️ Borrar Todos los Registros
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Sistema de Registros Médicos - Desarrollado para el curso de Desarrollo de Aplicaciones Web</p>
+            <p class="small">© 2025 - UNIMINUTO</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
